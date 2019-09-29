@@ -1,6 +1,9 @@
 import argparse
 import sys
+import os
+from pathlib import Path
 
+sys.path.append(os.path.abspath(os.path.curdir))
 import load_addons
 
 
@@ -58,13 +61,17 @@ if __name__ == '__main__':
                         action='append')
     parser.add_argument('-an', '--addon_name',
                         help='Addon name',
-                        required=True,
                         dest='addon_name',
                         action='append')
 
     args = parser.parse_args()
 
-    source_path = args.source_path
-    addon_name = args.addon_name
+    source_path = Path(os.path.abspath(str(args.source_path[0])))
+    print(type(source_path))
+    if args.addon_name:
+        addon_name = str(args.addon_name[0])
+    else:
+        addon_name = str(os.path.basename(source_path))
+    print(addon_name)
 
     launch(source_path, addon_name)

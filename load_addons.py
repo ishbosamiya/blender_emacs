@@ -2,8 +2,10 @@ import os
 import bpy
 import sys
 import traceback
-from pathlib import Path
-from . environment import user_addon_directory, addon_directories
+
+
+from environment import user_addon_directory, addon_directories
+
 
 def setup_addon_links(addons_to_load):
     if not os.path.exists(user_addon_directory):
@@ -28,12 +30,14 @@ def setup_addon_links(addons_to_load):
 
     return path_mappings
 
+
 def load(addons_to_load):
     for source_path, module_name in addons_to_load:
         try:
             bpy.ops.preferences.addon_enable(module=module_name)
         except:
             traceback.print_exc()
+
 
 def create_link_in_user_addon_directory(directory, link_path):
     if os.path.exists(link_path):
@@ -44,6 +48,7 @@ def create_link_in_user_addon_directory(directory, link_path):
         _winapi.CreateJunction(str(directory), str(link_path))
     else:
         os.symlink(str(directory), str(link_path), target_is_directory=True)
+
 
 def is_in_any_addon_directory(module_path):
     for path in addon_directories:
