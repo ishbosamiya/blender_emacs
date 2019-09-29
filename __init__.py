@@ -1,6 +1,8 @@
 import argparse
 import sys
 import os
+import bpy
+import traceback
 from pathlib import Path
 
 sys.path.append(os.path.abspath(os.path.curdir))
@@ -75,3 +77,7 @@ if __name__ == '__main__':
     print(addon_name)
 
     launch(source_path, addon_name)
+    try:
+        bpy.ops.preferences.addon_enable(module=addon_name)
+    except:
+        traceback.print_exc()
