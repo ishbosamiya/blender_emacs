@@ -5,7 +5,7 @@ import bpy
 import traceback
 from pathlib import Path
 
-sys.path.append(os.path.abspath(os.path.curdir))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import load_addons
 
 
@@ -56,12 +56,12 @@ def launch(source_path, addon_name):
 
 if __name__ == '__main__':
     parser = ArgumentParserForBlender(description="Parsing addon information")
-    parser.add_argument('-sp', '--source_path',
+    parser.add_argument('-sp', '--source-path',
                         help='Source path to the addon',
                         required=True,
                         dest='source_path',
                         action='append')
-    parser.add_argument('-an', '--addon_name',
+    parser.add_argument('-an', '--addon-name',
                         help='Addon name',
                         dest='addon_name',
                         action='append')
