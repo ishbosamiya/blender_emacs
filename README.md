@@ -1,0 +1,1 @@
+Thank you Jacques Lucke for the [Blender VSCode extension](https://github.com/JacquesLucke/blender_vscode.git), served as good reference.
